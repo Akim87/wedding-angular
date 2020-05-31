@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Section } from '../interfaces/section';
 
 @Component({
   selector: 'app-section-coaches',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./section-coaches.component.scss']
 })
 export class SectionCoachesComponent implements OnInit {
+
+  @Input() content: Section
 
   constructor() { }
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Section } from '../interfaces/section'
 
 @Component({
   selector: 'app-section-hero',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SectionHeroComponent implements OnInit {
 
+  @Input() content: Section
+  @Output() onClick: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openPopup(): void {
+    this.onClick.emit(true);
   }
 
 }

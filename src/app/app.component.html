@@ -1,6 +1,9 @@
-<app-header></app-header>
-<app-section-hero></app-section-hero>
-<app-section-services></app-section-services>
-<app-section-offer></app-section-offer>
-<app-section-coaches></app-section-coaches>
-<app-footer></app-footer>
+<div *ngIf='!isLoading' class="wrapper" [ngClass]="{blurred:isPopupOpen}">
+  <app-header [content]="menuSectionContent"></app-header>
+  <app-section-hero [content]="heroSectionContent" (onClick)="togglePopup($event)"></app-section-hero>
+  <app-section-services [content]="servicesSectionContent"></app-section-services>
+  <app-section-offer [content]="offerSectionContent"></app-section-offer>
+  <app-section-coaches [content]="coachesSectionContent"></app-section-coaches>
+  <app-footer></app-footer>
+</div>
+<app-login-popup *ngIf='isPopupOpen' (onClick)="togglePopup($event)"></app-login-popup>

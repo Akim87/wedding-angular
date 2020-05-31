@@ -4,21 +4,18 @@
       class="hero__heading base-heading-xl wow fadeInDown"
       data-wow-delay="0.1s"
     >
-      Wedding Dance Lessons
+      {{content.meta.title}}
     </h1>
     <span
       class="hero__location base-heading-sm wow fadeIn"
       data-wow-delay="0.4s"
-      >New Jersey</span
+      >{{content.meta.location}}</span
     >
     <p class="base-text hero__info wow fadeIn" data-wow-delay="0.6s">
-      The wedding dance is one of the most important dances in your life.
-      You look perfect and the whole audience is looking at you. Also, it
-      becomes the favorite moment you like to play on videos and photos.
-      Feel the moment
+      {{content.meta.description}}
     </p>
-    <button class="btn-accent hero__btn wow fadeInUp" data-wow-delay="0.8s">
-      Let’s start
+    <button (click)="openPopup()" class="btn-accent hero__btn wow fadeInUp" data-wow-delay="0.8s">
+      {{content.action.title}}
     </button>
   </div>
   <div class="hero__img-holder">

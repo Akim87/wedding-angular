@@ -1,6 +1,12 @@
-:host {
+.wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  &.blurred {
+    position: fixed;
+    filter: blur(4px);
+    overflow-y: scroll;
+  }
 }

@@ -1,117 +1,30 @@
 <section class="base-section coaches" id="coaches">
   <h2 class="section-heading wow fadeInDown" data-wow-delay="0.1s">
-    Our Coaches
+    {{content.meta.title}}
   </h2>
   <p class="section-description wow fadeInDown" data-wow-delay="0.3s">
-    Coaches in our school are not only perfect dancers but also have a big
-    experience in coaching that is why you will feel really amazing after
-    each of your class
+    {{content.meta.description}}
   </p>
-  <div class="coaches__inner">
-    <div
-      class="base-card coaches__item coach-card wow fadeInUp"
-      data-wow-delay="0.5s"
-    >
-      <img
-        class="coach-card__img"
-        src="../../assets/coach1.jpg"
-        alt="Coach photo"
-        loading="lazy"
-      />
+  <div class="coaches__inner d-flex">
+    <div class="base-card coaches__item coach-card d-flex wow fadeInUp" data-wow-delay="0.5s"
+      *ngFor="let coach of content.content; let i = index">
+      <img class="coach-card__img" src="../../assets/coach1.jpg" alt="Coach photo" loading="lazy" />
       <div class="coach-card__info d-flex flex-column">
-        <span class="coach-card__number">01</span>
-        <h3 class="base-heading-sm coach-card__name">Ann Walker</h3>
-        <span class="coach-card__position">Dancer</span>
+        <span class="coach-card__number">0{{i + 1}}</span>
+        <h3 class="base-heading-sm coach-card__name">{{coach.name}}</h3>
+        <span class="coach-card__position">{{coach.direction}}</span>
         <ul class="base-text coach-card__list">
           <li class="coach-card__list-item">
-            <span class="blurred">Work experience </span>8 years
+            <span class="blurred">Work experience </span>{{coach.workExperience}} years
           </li>
           <li class="coach-card__list-item">
-            <span class="blurred">Teacher for </span>3 years
+            <span class="blurred">Teacher for </span>{{coach.teachExperience}} years
           </li>
           <li class="coach-card__list-item">
-            <span class="blurred">Style </span>Viennese Waltz, Salsa
-          </li>
-        </ul>
-        <button class="btn-accent coach-card__btn">Let’s start</button>
-        <button class="btn-accent coach-card__btn--mob"></button>
-      </div>
-    </div>
-    <div
-      class="base-card coaches__item coach-card wow fadeInUp"
-      data-wow-delay="0.7s"
-    >
-      <img
-        class="coach-card__img"
-        src="../../assets/coach2.jpg"
-        alt="Coach photo"
-        loading="lazy"
-      />
-      <div class="coach-card__info d-flex flex-column">
-        <span class="coach-card__number">02</span>
-        <h3 class="base-heading-sm coach-card__name">Tom Wilspon</h3>
-        <span class="coach-card__position">Dancer</span>
-        <ul class="base-text coach-card__list">
-          <li class="coach-card__list-item">
-            <span class="blurred">Work experience </span>10 years
-          </li>
-          <li class="coach-card__list-item">
-            <span class="blurred">Teacher for </span>5 years
-          </li>
-          <li class="coach-card__list-item">
-            <span class="blurred">Style </span>HipHop
-          </li>
-        </ul>
-        <button class="btn-accent coach-card__btn">Let’s start</button>
-        <button class="btn-accent coach-card__btn--mob"></button>
-      </div>
-    </div>
-    <div class="base-card coaches__item coach-card">
-      <img
-        class="coach-card__img"
-        src="../../assets/coach1.jpg"
-        alt="Coach photo"
-        loading="lazy"
-      />
-      <div class="coach-card__info d-flex flex-column">
-        <span class="coach-card__number">03</span>
-        <h3 class="base-heading-sm coach-card__name">Ann Walker</h3>
-        <span class="coach-card__position">Dancer</span>
-        <ul class="base-text coach-card__list">
-          <li class="coach-card__list-item">
-            <span class="blurred">Work experience </span>8 years
-          </li>
-          <li class="coach-card__list-item">
-            <span class="blurred">Teacher for </span>3 years
-          </li>
-          <li class="coach-card__list-item">
-            <span class="blurred">Style </span>Viennese Waltz, Salsa
-          </li>
-        </ul>
-        <button class="btn-accent coach-card__btn">Let’s start</button>
-        <button class="btn-accent coach-card__btn--mob"></button>
-      </div>
-    </div>
-    <div class="base-card coaches__item coach-card">
-      <img
-        class="coach-card__img"
-        src="../../assets/coach2.jpg"
-        alt="Coach photo"
-        loading="lazy"
-      />
-      <div class="coach-card__info d-flex flex-column">
-        <span class="coach-card__number">04</span>
-        <h3 class="base-heading-sm coach-card__name">Tom Wilspon</h3>
-        <span class="coach-card__position">Dancer</span>
-        <ul class="base-text coach-card__list">
-          <li class="coach-card__list-item">
-            <span class="blurred">Work experience </span>10 years
-          </li>
-          <li class="coach-card__list-item">
-            <span class="blurred">Teacher for </span>5 years
-          </li>
-          <li class="coach-card__list-item">
-            <span class="blurred">Style </span>HipHop
+            <span class="blurred">Style </span>
+            <span *ngFor="let style of coach.style">
+              {{style}} 
+            </span>
           </li>
         </ul>
         <button class="btn-accent coach-card__btn">Let’s start</button>

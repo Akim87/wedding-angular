@@ -11,6 +11,9 @@ import { SectionHeroComponent } from './section-hero/section-hero.component';
 import { SectionServicesComponent } from './section-services/section-services.component';
 import { SectionOfferComponent } from './section-offer/section-offer.component';
 import { SectionCoachesComponent } from './section-coaches/section-coaches.component';
+import { HttpClientModule } from '@angular/common/http';
+import { WeddingApiService } from './wedding-api.service';
+import { LoginPopupComponent } from './login-popup/login-popup.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +25,15 @@ import { SectionCoachesComponent } from './section-coaches/section-coaches.compo
     SectionHeroComponent,
     SectionServicesComponent,
     SectionOfferComponent,
-    SectionCoachesComponent
+    SectionCoachesComponent,
+    LoginPopupComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [WeddingApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
