@@ -15,8 +15,12 @@ export class AppComponent implements OnInit {
   public servicesSectionContent: Section;
   public offerSectionContent: Section;
   public coachesSectionContent: Section;
+  public editedSectionContent: Section;
   public isLoading: boolean = false;
   public isPopupOpen: boolean = false;
+  public isAdmin: boolean = false;
+  public isLoginPopup: boolean = false;
+  public isEditorPopup: boolean = false;
 
   constructor(private weddingApiService: WeddingApiService) { }
 
@@ -24,7 +28,7 @@ export class AppComponent implements OnInit {
     this.getContentData();
   }
 
-  private getContentData(): void{
+  public getContentData(): void{
     this.isLoading = true;
     <Subscription>this.weddingApiService.getData()
       .subscribe((data: any) => {
@@ -46,7 +50,20 @@ export class AppComponent implements OnInit {
     this.coachesSectionContent = this.getSectionContent('coach');
   }
 
-  public togglePopup(event: boolean): void {
+  public closePopup(event: boolean): void {
     this.isPopupOpen = event;
+    this.isLoginPopup = false;
+    this.isEditorPopup = false;
+  }
+
+  public openLoginPopup(event: boolean): void {
+    this.isPopupOpen = true;
+    this.isLoginPopup = true;
+  }
+
+  public openEditorPopup(event: Section): void {
+    this.editedSectionContent = event;
+    this.isPopupOpen = true;
+    this.isEditorPopup = true;
   }
 }

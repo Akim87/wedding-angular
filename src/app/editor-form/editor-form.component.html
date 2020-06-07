@@ -1,0 +1,26 @@
+<form
+  class="editor d-flex flex-column"
+  [formGroup]="editorForm"
+  (ngSubmit)="editorSubmit()"
+>
+  <input
+    type="text"
+    placeholder="Title"
+    class="editor__input base-text"
+    formControlName="title"
+  />
+  <textarea
+    type="text"
+    placeholder="Description"
+    class="editor__input base-text"
+    formControlName="description"
+  >
+  </textarea>
+  <div class="d-flex justify-between">
+    <button type="submit" class="btn-accent">Ok</button>
+    <button class="btn-main" (click)="closePopup()">Cancel</button>
+  </div>
+  <span *ngIf="isSubmitSuccess" class="editor__notification base-heading-sm"
+    >Data Saved</span
+  >
+</form>

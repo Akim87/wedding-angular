@@ -1,9 +1,27 @@
-<div *ngIf='!isLoading' class="wrapper" [ngClass]="{blurred:isPopupOpen}">
+<div *ngIf="!isLoading" class="wrapper" [ngClass]="{ blurred: isPopupOpen }">
   <app-header [content]="menuSectionContent"></app-header>
-  <app-section-hero [content]="heroSectionContent" (onClick)="togglePopup($event)"></app-section-hero>
-  <app-section-services [content]="servicesSectionContent"></app-section-services>
+  <app-section-hero
+    [content]="heroSectionContent"
+    (onClick)="openLoginPopup($event)"
+  ></app-section-hero>
+  <app-section-services
+    [content]="servicesSectionContent"
+    (onClick)="openEditorPopup($event)"
+  ></app-section-services>
   <app-section-offer [content]="offerSectionContent"></app-section-offer>
   <app-section-coaches [content]="coachesSectionContent"></app-section-coaches>
   <app-footer></app-footer>
 </div>
-<app-login-popup *ngIf='isPopupOpen' (onClick)="togglePopup($event)"></app-login-popup>
+<app-popup *ngIf="isPopupOpen">
+  <app-login-form
+    (onCancel)="closePopup($event)"
+    (onSubmit)="isAdmin = true"
+    *ngIf="isLoginPopup"
+  ></app-login-form>
+  <app-editor-form
+    (onCancel)="closePopup($event)"
+    (onSubmit)="getContentData()"
+    *ngIf="isEditorPopup"
+    [content]="editedSectionContent">
+  </app-editor-form>
+</app-popup>

@@ -1,0 +1,9 @@
+<form class="login d-flex flex-column" [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+  <input type="email" placeholder="Email" class="login__input" required formControlName="email">
+  <input type="password" placeholder="Password" class="login__input" required formControlName="password">
+  <div class="d-flex  justify-between">
+    <button type="submit" class="btn-accent" [disabled]="loginForm.invalid">Ok</button>
+    <button class="btn-main" (click)="closePopup()">Cancel</button>
+  </div>
+  <span *ngIf="isSubmitSuccess" class="login__notification base-heading-sm">Welcome back!</span>
+</form>

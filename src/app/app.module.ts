@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
@@ -13,7 +14,9 @@ import { SectionOfferComponent } from './section-offer/section-offer.component';
 import { SectionCoachesComponent } from './section-coaches/section-coaches.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WeddingApiService } from './wedding-api.service';
-import { LoginPopupComponent } from './login-popup/login-popup.component';
+import { PopupComponent } from './popup/popup.component';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { EditorFormComponent } from './editor-form/editor-form.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +29,15 @@ import { LoginPopupComponent } from './login-popup/login-popup.component';
     SectionServicesComponent,
     SectionOfferComponent,
     SectionCoachesComponent,
-    LoginPopupComponent
+    PopupComponent,
+    LoginFormComponent,
+    EditorFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [WeddingApiService],
   bootstrap: [AppComponent]

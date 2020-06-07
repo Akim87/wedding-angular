@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Section } from '../interfaces/section'
 
 @Component({
@@ -9,10 +9,15 @@ import { Section } from '../interfaces/section'
 export class SectionServicesComponent implements OnInit {
 
   @Input() content: Section
+  @Output() onClick: EventEmitter<Section> = new EventEmitter<Section>();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public openEditor(): void {
+    this.onClick.emit(this.content);
   }
 
 }

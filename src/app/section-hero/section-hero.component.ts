@@ -16,7 +16,7 @@ export class SectionHeroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openPopup(): void {
+  public openPopup(): void {
     this.onClick.emit(true);
   }
 
