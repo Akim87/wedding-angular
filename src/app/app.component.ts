@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { WeddingApiService } from './wedding-api.service';
-import { Section } from './interfaces/section'
+import { ContentService } from './services/content.service';
+import { Section } from './interfaces/section';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
   public sectionsData: Array<Section>;
   public heroSectionContent: Section;
   public menuSectionContent: Section;
@@ -22,24 +21,23 @@ export class AppComponent implements OnInit {
   public isLoginPopup: boolean = false;
   public isEditorPopup: boolean = false;
 
-  constructor(private weddingApiService: WeddingApiService) { }
+  constructor(private contentService: ContentService) {}
 
   ngOnInit(): void {
     this.getContentData();
   }
 
-  public getContentData(): void{
+  public getContentData(): void {
     this.isLoading = true;
-    <Subscription>this.weddingApiService.getData()
-      .subscribe((data: any) => {
-        this.sectionsData = data.content;
-        this.initSections();
-        this.isLoading = false;
-      })
+    <Subscription>this.contentService.getData().subscribe((data: any) => {
+      this.sectionsData = data.content;
+      this.initSections();
+      this.isLoading = false;
+    });
   }
 
   private getSectionContent(type): Section {
-    return this.sectionsData.find((section) => section.type === type)
+    return this.sectionsData.find((section) => section.type === type);
   }
 
   private initSections(): void {
@@ -56,7 +54,7 @@ export class AppComponent implements OnInit {
     this.isEditorPopup = false;
   }
 
-  public openLoginPopup(event: boolean): void {
+  public openLoginPopup(): void {
     this.isPopupOpen = true;
     this.isLoginPopup = true;
   }
@@ -65,5 +63,10 @@ export class AppComponent implements OnInit {
     this.editedSectionContent = event;
     this.isPopupOpen = true;
     this.isEditorPopup = true;
+  }
+
+  public LogOut() {
+    localStorage.removeItem('accessToken');
+    this.isAdmin = false;
   }
 }

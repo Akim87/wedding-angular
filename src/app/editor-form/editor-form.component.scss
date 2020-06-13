@@ -1,6 +1,6 @@
 .editor {
   min-width: 700px;
-  
+
   &__input {
     margin-bottom: 1rem;
     padding: 0.5rem;
@@ -12,5 +12,9 @@
     text-align: center;
     padding: 1rem;
     margin-top: 1rem;
+  }
+
+  &__tab-name {
+    margin-bottom: 1rem;
   }
 }

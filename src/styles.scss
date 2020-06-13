@@ -96,6 +96,15 @@ section {
     color: white;
     background-color: $color-main;
   }
+
+  &--inverted {
+    color: white;
+    background-color: $color-main;
+    &:hover {
+    background-color: inherit;
+    color: $color-main;
+    }
+  }
 }
 
 .btn-accent {

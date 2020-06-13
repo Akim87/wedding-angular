@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { WeddingApiService } from '../wedding-api.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EditSectionService } from '../services/editSection.service';
+import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Section } from '../interfaces/section';
 
 @Component({
@@ -13,18 +13,37 @@ export class EditorFormComponent implements OnInit {
   @Output() onCancel: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onSubmit: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private weddingApiService: WeddingApiService) {}
+  constructor(private editSectionService: EditSectionService) { }
 
   public editorForm: FormGroup;
   public isSubmitSuccess: boolean = false;
   public isSubmitFailed: boolean = false;
-  public subscription;
 
   ngOnInit(): void {
-    this.editorForm = new FormGroup({
-      title: new FormControl(this.content.meta.title),
-      description: new FormControl(this.content.meta.description),
+    this.initForms();
+  }
+
+  private initForms() {
+    const content: FormArray = new FormArray([]);
+
+    this.content.content.forEach((tab) => {
+      content.push(
+        new FormGroup({
+          title: new FormControl(tab.title),
+          url: new FormControl(tab.url),
+        })
+      );
     });
+
+    this.editorForm = new FormGroup({
+      meta: new FormGroup({
+        title: new FormControl(this.content.meta.title),
+        description: new FormControl(this.content.meta.description),
+      }),
+      content,
+    });
+
+    console.log(this.editorForm.value)
   }
 
   public closePopup(): void {
@@ -32,10 +51,8 @@ export class EditorFormComponent implements OnInit {
   }
 
   editorSubmit() {
-    this.content.meta.title = this.editorForm.value.title;
-    this.content.meta.description = this.editorForm.value.description;
-    this.subscription = this.weddingApiService
-      .put(this.content)
+    this.editSectionService
+      .sendData(this.editorForm.value)
       .subscribe(
         () => {
           this.isSubmitSuccess = true;
@@ -45,7 +62,7 @@ export class EditorFormComponent implements OnInit {
           }, 3000);
         },
         (error) => {
-          console.log(error.message);
+          console.log(error.data);
         }
       );
   }

@@ -3,19 +3,44 @@
   [formGroup]="editorForm"
   (ngSubmit)="editorSubmit()"
 >
-  <input
-    type="text"
-    placeholder="Title"
-    class="editor__input base-text"
-    formControlName="title"
-  />
-  <textarea
-    type="text"
-    placeholder="Description"
-    class="editor__input base-text"
-    formControlName="description"
-  >
-  </textarea>
+  <div formGroupName="meta" class="d-flex flex-column">
+    <input
+      type="text"
+      placeholder="Title"
+      class="editor__input base-text"
+      formControlName="title"
+    />
+    <textarea
+      type="text"
+      placeholder="Description"
+      class="editor__input base-text"
+      formControlName="description"
+    >
+    </textarea>
+  </div>
+  <div class="d-flex justify-between">
+    <div
+      formArrayName="content"
+      *ngFor="let control of content.content; let i = index"
+    >
+      <div [formGroupName]="i" class="d-flex flex-column">
+        <span class="editor__tab-name">{{"Tab "+(1+i)}}</span>
+        <input
+          type="text"
+          placeholder="Title"
+          class="editor__input base-text"
+          formControlName="title"
+        />
+        <input
+          type="text"
+          placeholder=""
+          class="editor__input base-text"
+          formControlName="url"
+        />
+      </div>
+    </div>
+  </div>
+
   <div class="d-flex justify-between">
     <button type="submit" class="btn-accent">Ok</button>
     <button class="btn-main" (click)="closePopup()">Cancel</button>

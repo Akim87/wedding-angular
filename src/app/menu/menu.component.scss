@@ -1,5 +1,9 @@
 @import 'vars';
 
+:host {
+  flex-grow: 1;
+}
+
 .menu {
   @media only screen and (max-width: $media-mob) {
     position: fixed;
@@ -13,7 +17,6 @@
     transform: scale(0);
     opacity: 0;
     align-items: flex-start;
-    // background-image: url(../img/Menu.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position-x: right;

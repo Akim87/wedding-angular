@@ -11,6 +11,11 @@
     padding-top: 4%;
     padding-bottom: 4%;
   }
+
+  &__login-btn {
+    margin-left: 1rem;
+  }
+
   &__menu-burger {
     transition: all 0.3s;
     content: "";

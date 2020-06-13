@@ -6,7 +6,10 @@ export interface Section {
     heroImage?: string,
   }
   type: string,
-  content?: object[],
+  content?: [{
+    title: string,
+    url: string,
+  }],
   action?: {
     title: string,
     url: string,

@@ -13,7 +13,9 @@ import { SectionServicesComponent } from './section-services/section-services.co
 import { SectionOfferComponent } from './section-offer/section-offer.component';
 import { SectionCoachesComponent } from './section-coaches/section-coaches.component';
 import { HttpClientModule } from '@angular/common/http';
-import { WeddingApiService } from './wedding-api.service';
+import { ContentService } from './services/content.service';
+import { LoginService } from './services/login.service';
+import { EditSectionService } from './services/editSection.service';
 import { PopupComponent } from './popup/popup.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { EditorFormComponent } from './editor-form/editor-form.component';
@@ -39,7 +41,7 @@ import { EditorFormComponent } from './editor-form/editor-form.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [WeddingApiService],
+  providers: [ContentService, LoginService, EditSectionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

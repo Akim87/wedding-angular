@@ -1,5 +1,14 @@
-<header class="header base-section d-flex align-center justify-between" [ngClass]="{hasShadow:isScrolled}">
+<header
+  class="header base-section d-flex align-center justify-between"
+  [ngClass]="{ hasShadow: isScrolled }"
+>
   <app-logo></app-logo>
-  <app-menu [content]='content'></app-menu>
+  <app-menu [content]="content"></app-menu>
   <button class="header__menu-burger"></button>
+  <button class="btn-main header__login-btn" (click)="openLoginPopup()" *ngIf='!isAdmin'>
+    Sign in
+  </button>
+  <button class="btn-main btn-main--inverted header__login-btn" (click)="LogOut()" *ngIf='isAdmin'>
+    Sign out
+  </button>
 </header>

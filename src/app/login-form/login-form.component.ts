@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { WeddingApiService } from '../wedding-api.service';
+import { LoginService } from '../services/login.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -11,7 +11,7 @@ export class LoginFormComponent implements OnInit {
   @Output() onCancel: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onSubmit: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private weddingApiService: WeddingApiService) { }
+  constructor(private loginService: LoginService) { }
 
   public loginForm: FormGroup;
   public isSubmitSuccess: boolean = false;
@@ -36,11 +36,10 @@ export class LoginFormComponent implements OnInit {
   }
 
   loginSubmit() {
-    this.subscription = this.weddingApiService.post(this.loginForm.value.email, this.loginForm.value.password)
+    this.subscription = this.loginService.sendData(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(res => {
           localStorage.setItem('accessToken', res.access_token);
           this.onSubmit.emit();
-          console.log(res.access_token);
           this.isSubmitSuccess = true;
           setTimeout(() => this.closePopup(), 3000)
         },

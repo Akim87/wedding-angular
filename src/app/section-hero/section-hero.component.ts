@@ -1,23 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Section } from '../interfaces/section'
+import { Component, OnInit, Input } from '@angular/core';
+import { Section } from '../interfaces/section';
 
 @Component({
   selector: 'app-section-hero',
   templateUrl: './section-hero.component.html',
-  styleUrls: ['./section-hero.component.scss']
+  styleUrls: ['./section-hero.component.scss'],
 })
 export class SectionHeroComponent implements OnInit {
+  @Input() content: Section;
 
-  @Input() content: Section
-  @Output() onClick: EventEmitter<boolean> = new EventEmitter<boolean>();
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  public openPopup(): void {
-    this.onClick.emit(true);
-  }
-
+  ngOnInit(): void {}
 }
